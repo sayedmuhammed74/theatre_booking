@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 const Login = ({ setAuth, setAdmin }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [msg, setMsg] = useState('');
   const navigate = useNavigate();
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -13,7 +14,7 @@ const Login = ({ setAuth, setAdmin }) => {
     let users = JSON.parse(localStorage.getItem('users'));
     let user = users.filter((item) => item.username === username);
     if (user.length === 0) {
-      console.log('user not found');
+      setMsg('user not found');
     } else {
       if (user[0].password === password) {
         localStorage.setItem(
@@ -29,7 +30,7 @@ const Login = ({ setAuth, setAdmin }) => {
         navigate('/');
         setAuth(true);
       } else {
-        console.log('password is incorrect');
+        setMsg('password is incorrect');
       }
     }
   };
@@ -38,8 +39,9 @@ const Login = ({ setAuth, setAdmin }) => {
       <div className="container mx-auto min-h-[80vh] flex justify-center items-center">
         <form
           onSubmit={handleLogin}
-          className="flex flex-col gap-7 max-w-[300px] mx-auto px-8 py-5 shadow-md rounded-md bg-white"
+          className="flex flex-col text-center relative gap-7 max-w-[300px] mx-auto px-8 py-5 shadow-md rounded-md bg-white"
         >
+          <p className="text-red-500">{msg}</p>
           <h1 className="font-medium text-2xl text-center text-slate-900">
             Login
           </h1>

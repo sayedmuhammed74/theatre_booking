@@ -135,7 +135,7 @@ function App() {
                     className="hover:opacity-80 ease-in duration-75 relative"
                     to="/cart"
                   >
-                    <span className="absolute top-[-10px] right-[-8px] text-red-500">
+                    <span className="absolute top-[-10px] right-[12px] text-red-500">
                       {cart}
                     </span>
                     <AiOutlineShoppingCart className="text-2xl" />

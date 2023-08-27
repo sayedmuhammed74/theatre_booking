@@ -18,8 +18,9 @@ const DashboardOrder = ({ order, setCart }) => {
   return (
     <div className="flex flex-col gap-3 bg-white px-5 py-3 my-2 rounded-md">
       <h1 className="text-lg font-medium">{order.movie}</h1>
-      <p>{order.price}$</p>
-      <p>{order.time}</p>
+      <p className="text-gray-500">Price: {order.price}$</p>
+      <p className="text-gray-500">Time: {order.time}</p>
+      <p className="text-gray-500">Number Of Tickets: {order.numOfTickets}</p>
       <button
         className="w-[120px] py-1.5 rounded-md text-base font-medium mr-3 text-white bg-red-400"
         onClick={cancleOrder}

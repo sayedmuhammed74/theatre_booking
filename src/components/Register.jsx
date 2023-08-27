@@ -2,19 +2,23 @@ import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 const Register = () => {
-  const { username, setUsername } = useState('');
-  const { password, setPassword } = useState('');
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [msg, setMsg] = useState('');
   const navigate = useNavigate();
   const handleRegister = (e) => {
     e.preventDefault();
     let users = JSON.parse(localStorage.getItem('users'));
     let user = users.filter((item) => item.username === username);
-    if (user) {
-      console.log('username already exist');
+    if (user.length !== 0) {
+      setMsg('username already exist');
     } else {
-      let id = Math.round(Math.random() * 100000);
-      users.push({ id, username, password, admin: false, orders: [] });
-      navigate('/login');
+      if (username && password) {
+        let id = Math.round(Math.random() * 100000);
+        users.push({ id, username, password, admin: false, orders: [] });
+        localStorage.setItem('users', JSON.stringify(users));
+        navigate('/login');
+      }
     }
   };
   useEffect(() => {
@@ -26,8 +30,9 @@ const Register = () => {
       <div className="container mx-auto min-h-[80vh] flex justify-center items-center">
         <form
           onSubmit={handleRegister}
-          className="flex flex-col gap-7 max-w-[300px] mx-auto px-8 py-5 shadow-md rounded-md bg-white"
+          className="flex flex-col text-center gap-7 max-w-[300px] mx-auto px-8 py-5 shadow-md rounded-md bg-white"
         >
+          <p className="text-red-500">{msg}</p>
           <h1 className="font-medium text-2xl text-center text-slate-900">
             Register
           </h1>
