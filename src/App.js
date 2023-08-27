@@ -4,7 +4,6 @@ import Home from './components/Home';
 
 // Components
 import Movies from './components/Movies';
-import Food from './components/Food';
 import Register from './components/Register';
 import Login from './components/Login';
 
@@ -21,7 +20,7 @@ import {
 import { movies, users, foods } from './data.js';
 import Order from './components/Order';
 import Error from './components/Error';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import Cart from './components/Cart';
 import ManageOrders from './components/ManageOrders';
 import ManageFood from './components/ManageFood';
@@ -32,6 +31,16 @@ import AddFood from './components/AddFood';
 function App() {
   const scrollTop = () => {
     window.scrollTo(0, 0);
+  };
+  const dropList = useRef(null);
+  const handleDropList = () => {
+    if (dropList.current.classList.contains('hidden')) {
+      dropList.current.classList.add('flex');
+      dropList.current.classList.remove('hidden');
+    } else {
+      dropList.current.classList.add('hidden');
+      dropList.current.classList.remove('flex');
+    }
   };
   // const navigate = useNavigate();
   const [auth, setAuth] = useState(localStorage.getItem('auth') ? true : false);
@@ -64,7 +73,77 @@ function App() {
           <Link to="/">
             <h1 className="text-2xl font-medium">Theatre Booking</h1>
           </Link>
-          <FaListUl className="flex md:hidden" />
+          <div className="relative flex md:hidden">
+            <FaListUl
+              onClick={handleDropList}
+              className="flex text-xl md:hidden cursor-pointer"
+            />
+            <ul
+              ref={dropList}
+              className="hidden flex-col absolute top-7 right-0 pr-7 pl-32 py-2 gap-2 md:hidden bg-[#131921]"
+            >
+              <li>
+                <Link className="hover:opacity-80 ease-in duration-75" to="/">
+                  Home
+                </Link>
+              </li>
+              <li>
+                <Link
+                  className="hover:opacity-80 ease-in duration-75"
+                  to="/movies"
+                >
+                  Movies
+                </Link>
+              </li>
+              {admin && auth && (
+                <li>
+                  <Link
+                    className="hover:opacity-80 ease-in duration-75"
+                    to="/dashboard/orders"
+                  >
+                    Dashboard
+                  </Link>
+                </li>
+              )}
+              {!auth && (
+                <li>
+                  <Link
+                    className="hover:opacity-80 ease-in duration-75"
+                    to="/login"
+                  >
+                    Login
+                  </Link>
+                </li>
+              )}
+              {auth && (
+                <li>
+                  <button
+                    onClick={() => {
+                      localStorage.removeItem('auth');
+                      setAuth(false);
+                      setAdmin(false);
+                    }}
+                    className="hover:opacity-80 ease-in duration-75"
+                  >
+                    Logout
+                  </button>
+                </li>
+              )}
+              {auth && !admin && (
+                <li>
+                  <Link
+                    className="hover:opacity-80 ease-in duration-75 relative"
+                    to="/cart"
+                  >
+                    <span className="absolute top-[-10px] right-[-8px] text-red-500">
+                      {cart}
+                    </span>
+                    <AiOutlineShoppingCart className="text-2xl" />
+                  </Link>
+                </li>
+              )}
+            </ul>
+          </div>
           <ul className="hidden md:flex gap-4 items-center font-medium text-lg">
             <li>
               <Link className="hover:opacity-80 ease-in duration-75" to="/">
@@ -134,7 +213,6 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/movies" element={<Movies />} />
-        <Route path="/food" element={<Food />} />
         <Route path="/addmovie" element={<AddMovie />} />
         <Route path="/addfood" element={<AddFood />} />
         <Route
