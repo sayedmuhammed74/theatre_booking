@@ -11,7 +11,7 @@ import { motion } from 'framer-motion';
 
 const Movie = ({ movie }) => {
   return (
-    <div className="md:w-1/5 flex flex-col p-3 shadow-xl space-y-1 justify-between rounded-2xl h-[350px] relative">
+    <div className="md:w-1/5 flex flex-col p-3 shadow-xl space-y-1 rounded-2xl relative">
       <img src={movie?.image} alt={movie?.title} className={`aspect-square`} />
       <div className="flex justify-between">
         <h1 className="font-medium text-lg">

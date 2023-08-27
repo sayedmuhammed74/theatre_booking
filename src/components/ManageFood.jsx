@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 const ManageFood = () => {
@@ -8,6 +8,9 @@ const ManageFood = () => {
     localStorage.setItem('foods', JSON.stringify(newFoods));
     setFoods(newFoods);
   };
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <section>
       <div className="container flex flex-col mx-auto px-5 py-3 my-4 rounded-md min-h-screen bg-gray-200">

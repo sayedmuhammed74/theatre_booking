@@ -1,9 +1,11 @@
 import { Link } from 'react-router-dom';
 import Movie from './Movie';
-// import { useCookies } from 'react-cookie';
+import { useEffect } from 'react';
 const Home = () => {
-  // const [cookie] = useCookies(['user']);
   const movies = window.localStorage.getItem('movies');
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <>
       {/* header */}

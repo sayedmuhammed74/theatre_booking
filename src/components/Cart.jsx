@@ -1,9 +1,13 @@
+import { useEffect } from 'react';
 import DashboardOrder from './DashboardOrder';
 
 const Cart = ({ setCart }) => {
   let username = JSON.parse(localStorage.getItem('auth'))?.username;
   let orders = JSON.parse(localStorage.getItem('auth'))?.orders;
   let isAdmin = JSON.parse(localStorage.getItem('auth'))?.admin;
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <section>
       <div className="container mx-auto px-5 py-3 my-4 rounded-md min-h-screen bg-gray-200">

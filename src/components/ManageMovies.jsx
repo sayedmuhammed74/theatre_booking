@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 const ManageMovies = () => {
   // let { orders, username } = JSON.parse(localStorage.getItem('auth'));
   // let users = JSON.parse(localStorage.getItem('users'));
@@ -12,6 +12,9 @@ const ManageMovies = () => {
     localStorage.setItem('movies', JSON.stringify(newMovies));
     setMovies(newMovies);
   };
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <section>
       <div className="container mx-auto px-5 py-3 my-4 rounded-md min-h-screen bg-gray-200">

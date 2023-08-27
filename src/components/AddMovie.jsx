@@ -6,6 +6,9 @@ const AddMovie = () => {
   const [rate, setRate] = useState('');
   const [img, setImg] = useState('');
   const navigate = useNavigate();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const handleAddMovie = () => {
     let movie = {
       id: Math.round(Math.random() * 10000),

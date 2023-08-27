@@ -1,10 +1,13 @@
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import DashboardOrder from './DashboardOrder';
 const ManageOrders = () => {
   // let { orders, username } = JSON.parse(localStorage.getItem('auth'));
   let users = JSON.parse(localStorage.getItem('users'));
   let isAdmin = JSON.parse(localStorage.getItem('auth')).admin;
-
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <section>
       {/* orders */}

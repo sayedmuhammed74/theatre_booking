@@ -13,6 +13,10 @@ const Order = ({ setCart }) => {
   const [seats, setSeats] = useState(movie[0].times[0]);
   const foods = JSON.parse(localStorage.getItem('foods'));
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   // order details
   const [numOfTickets, setNumOfTickets] = useState(0);
   const [price, setPrice] = useState(0);

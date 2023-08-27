@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 const Register = () => {
@@ -17,6 +17,10 @@ const Register = () => {
       navigate('/login');
     }
   };
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <section className="bg-gray-100">
       <div className="container mx-auto min-h-[80vh] flex justify-center items-center">

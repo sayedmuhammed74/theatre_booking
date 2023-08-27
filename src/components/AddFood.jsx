@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const AddFood = () => {
@@ -18,6 +18,9 @@ const AddFood = () => {
       navigate('/dashboard/foods');
     }
   };
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <section className="bg-gray-300 px-5 py-5">
       <div className="container mx-auto flex justify-center items-center min-h-screen">
