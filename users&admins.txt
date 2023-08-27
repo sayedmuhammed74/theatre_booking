@@ -1,0 +1,2 @@
+{ id: 1, username: 'sayed', password: '123', admin: true}
+{ id: 2, username: 'nada', password: '321', admin: false},
